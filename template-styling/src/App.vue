@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <div class="content py-5">
+        <h3 class="mb-5">MAQE Forum</h3>
+        <p>Your current timezone is: Asia/Bangkok</p>
+        <div class="card-container">
+          <Card
+            v-for="(post, index) in posts"
+            :key="post.id"
+            :index="index"
+            :authors="authors"
+            :post="post"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import authorsData from './json/authors.json';
+import postsData from './json/posts.json';
+import Card from './components/Card.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Card,
+  },
+  data() {
+    return {
+      authors: authorsData,
+      posts: postsData,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
+html,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #eaeaea;
+}
+
+h3 {
+  font-weight: bold;
 }
 </style>
